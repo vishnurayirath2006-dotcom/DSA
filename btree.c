@@ -12,6 +12,11 @@ BTreeNode *root = NULL;
 BTreeNode *createNode(int leaf)
 {
 BTreeNode *t = (BTreeNode *)calloc(1, sizeof(BTreeNode));
+if (t == NULL)
+{
+perror("Failed to allocate B-tree node");
+exit(EXIT_FAILURE);
+}
 t->leaf = leaf;
 return t;
 }
@@ -106,12 +111,32 @@ while (1)
 {
 printf("\n1. Insert\n2. Traversal\n3. Exit\n");
 printf("Enter your choice: ");
-scanf("%d", &choice);
+if (scanf("%d", &choice) != 1)
+{
+int ch;
+while ((ch = getchar()) != '\n' && ch != EOF)
+{
+}
+if (ch == EOF)
+return 0;
+printf("Invalid choice.\n");
+continue;
+}
 switch (choice)
 {
 case 1:
 printf("Enter key: ");
-scanf("%d", &key);
+if (scanf("%d", &key) != 1)
+{
+int ch;
+while ((ch = getchar()) != '\n' && ch != EOF)
+{
+}
+if (ch == EOF)
+return 0;
+printf("Invalid key.\n");
+break;
+}
 insert(key);
 break;
 case 2:
