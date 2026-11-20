@@ -389,17 +389,9 @@ case 2:
 search();
 
 break;
+1
+2
 
-case 3:
-deleteKey();
-break;
-
-case 4:
-printf("Program terminated.\n");
-return 0;
-
-default:
-printf("Invalid choice!\n");
 }
 }
 
